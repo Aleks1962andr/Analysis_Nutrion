@@ -52,6 +52,11 @@ video {
       color:  rgb(25, 0, 255);
       font-size: 35px;
     }
+    .ingrad{
+      font-size: 28px;
+      color:  rgb(25, 0, 255);
+      margin-bottom: -10px;
+    }
     .icon{
       width: 33px;
           }

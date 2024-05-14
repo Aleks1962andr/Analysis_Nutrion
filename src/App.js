@@ -12,21 +12,15 @@ function App() {
   const [stateLoader, setStateLoader] = useState(true);
 
   useEffect(() => {
-    // const timer = setTimeout(() => setStateLoader(false),3000 );
-    //   return() => clearTimeout(timer) 
+    
     async function fetchNutritionInfo() {
       const url = 'https://api.edamam.com/api/nutrition-details';
       const appId = '53324613';
       const appKey = 'ee9066be70a6be976c5430efb9442c2f';
      
-      //   const requestBody = {
-      // // //   // title: "lemon",
-      //     ingr: ["1 carrot", "3 cabbage"]
-      //   };
-
+      
       const requestBody = {
-      //    // title: "lemon",
-      ingr: wordSubmitted.split(", ")
+        ingr: wordSubmitted.split(", ")
       };
       
       try {
@@ -46,10 +40,9 @@ function App() {
         setMyRecipes([data]);
         console.log(data);
       } catch (error) {
-        // console.error('Error fetching nutrition data:', error);
-         alertUse()
+        alertUse()
       } finally {
-        setStateLoader(false); // Скрываем Loader после завершения загрузки (в том числе и после ошибки)
+        setStateLoader(false); 
       }
     }
     startLoad(); 
@@ -74,8 +67,8 @@ function App() {
   }
   
   const startLoad = () => {
-    setStateLoader(true); // Показываем Loader перед началом загрузки
-    setTimeout(() => setStateLoader(false), 25000); // Скрываем Loader после 3 секунд загрузки
+    setStateLoader(true); 
+    setTimeout(() => setStateLoader(false), 25000); 
   };
   return (
     
@@ -97,11 +90,13 @@ function App() {
       <div className='container'>
         <button onClick={finalSearch}>
         <img src={require("./search.png")} alt="icon" className="icon" />     
-          {/* <img src="https://img.icons8.com/fluency/48/000000/fry.png" alt="icon" /> */}
-        </button>
+              </button>
       </div>
+      <div className='container'>
+       <h2 className='ingrad'>{wordSubmitted}</h2>          
+      </div>     
 
-      {stateLoader && <LoaderPage />} {/* Показываем Loader при stateLoader === true */}
+      {stateLoader && <LoaderPage />} 
 
       {myRecipes.map((recipe, index) => (
         <MyNutrionsComponent key={index} nutrients={recipe.totalNutrients} calories={recipe.calories}  />
